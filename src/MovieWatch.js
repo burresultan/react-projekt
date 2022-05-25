@@ -8,6 +8,8 @@ export default function MovieWatch() {
     const [movies, setMovies] = useState([]);
     const [query, setQuery] = useState('');
 
+
+
     const searchMovie = (e) => {
         e.preventDefault();
 
@@ -50,7 +52,7 @@ export default function MovieWatch() {
                 </div>
             </div>
 
-            <div className='movie'>
+            <div className='movies' id='movie-figures' class="row g-2">
                 <ul>
                     <li>
                         {movies.map((movie) => (
