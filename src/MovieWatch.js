@@ -1,40 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import key from '../src/key.json';
 import Movie from '../src/Movie';
+import axios from "axios";
 
-const api_url = `https://api.themoviedb.org/3/movie/popular?api_key=${key.key}`;
-const api_search = `https://api.themoviedb.org/3/search/movie?api_key=${key.key}&query`;
 export default function MovieWatch() {
 
     const [movies, setMovies] = useState([]);
     const [query, setQuery] = useState('');
 
-    useEffect(() => {
-        fetch(api_url)
-            .then((res) => res.json())
-            .then(data => {
-                console.log(data);
-                setMovies(data.results);
-            })
-    }, [])
-
-
-    const searchMovie = async (e) => {
+    const searchMovie = (e) => {
         e.preventDefault();
 
         setQuery(e.target.value);
+        // Make a request for a user with a given ID
 
-        console.log("Searching");
-        try {
-            const url = `https://api.themoviedb.org/3/search/movie?api_key=${key.key}&query=${query}`;
-            const res = await fetch(url);
-            const data = await res.json();
-            console.log(data);
-            setMovies(data.results);
-        }
-        catch (e) {
-            console.log(e);
-        }
+        axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key.key}&query=${query}`)
+            .then(function (response) {
+                // handle success
+                setMovies(response.data.results)
+                console.log(response);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
     }
 
 
@@ -59,7 +51,14 @@ export default function MovieWatch() {
             </div>
 
             <div className='movie'>
-
+                <ul>
+                    <li>
+                        {movies.map((movie) => (
+                            <Movie movie={movie} />
+                        ))
+                        }
+                    </li>
+                </ul>
             </div>
 
         </div>
