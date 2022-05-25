@@ -10,7 +10,13 @@ h1 {
   text-align: center;
 }
 
+::marker {
+  color: white;
+}
 
+.nav {
+  list-style: none;
+}
 
 .nav-link {
   color: black;
@@ -18,4 +24,19 @@ h1 {
 
 #search-div {
   text-align: center;
+}
+
+#mov-card {
+  padding-bottom: 1px;
+}
+
+.movie-card {
+  width: 33%;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.card {
+  padding: 2px;
 }
