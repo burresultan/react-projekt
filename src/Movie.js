@@ -1,7 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-export default function Movie() {
+const Movie = ({ original_title, poster_path }) => {
     return (
-        <div>Movie</div>
+        <div>
+            <h2>{original_title}</h2>
+            <img src={`https://image.tmdb.org/t/p/w500${poster_path}`}></img>
+
+        </div>
     )
 }
+
+export default Movie;
