@@ -11,23 +11,19 @@ export default function MovieWatch() {
 
 
     useEffect(() => {
-        const movieWatchList = JSON.parse(
-            localStorage.getItem('react-movie-app-favourites')
+        var movieWatchList = JSON.parse(localStorage.getItem('react-watchlist')
         );
 
         if (movieWatchList) {
-            setWatchList(movieWatchList);
-        }
-    }, []);
+            setWatchList(movieWatchList);}  },[]);
 
-    const saveToLocalStorage = (items) => {
-        localStorage.setItem('react-movie-app-favourites', JSON.stringify(items));
+    var LocalStorage = (watchlistMovies) => {localStorage.setItem('react-watchlist', JSON.stringify(watchlistMovies)) ;
     };
 
-    const addWatchList = (movie) => {
-        const newWatchList = [...watchlist, movie];
+    var addWatchList = (movie) => {
+        var newWatchList =   [...watchlist, movie];
         setWatchList(newWatchList);
-        saveToLocalStorage(newWatchList);;
+        LocalStorage(newWatchList);;
     };
 
     const searchMovie = (e) => {
