@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import key from '../src/key.json';
 import Movie from '../src/Movie';
 import axios from "axios";
@@ -7,8 +7,28 @@ export default function MovieWatch() {
 
     const [movies, setMovies] = useState([]);
     const [query, setQuery] = useState('');
+    const [watchlist, setWatchList] = useState([])
 
 
+    useEffect(() => {
+        const movieWatchList = JSON.parse(
+            localStorage.getItem('react-movie-app-favourites')
+        );
+
+        if (movieWatchList) {
+            setWatchList(movieWatchList);
+        }
+    }, []);
+
+    const saveToLocalStorage = (items) => {
+        localStorage.setItem('react-movie-app-favourites', JSON.stringify(items));
+    };
+
+    const addWatchList = (movie) => {
+        const newWatchList = [...watchlist, movie];
+        setWatchList(newWatchList);
+        saveToLocalStorage(newWatchList);;
+    };
 
     const searchMovie = (e) => {
         e.preventDefault();
@@ -32,6 +52,7 @@ export default function MovieWatch() {
     }
 
 
+
     return (
         <div>
             <ul class="nav justify-content-center">
@@ -52,9 +73,10 @@ export default function MovieWatch() {
                 </div>
             </div>
 
+
             <div className='movies' id='movie-figures' class="row g-2">
                 {movies.map((movie) => (
-                    <Movie movie={movie} />
+                    <Movie movie={movie} onWatchListClick={addWatchList} />
                 ))
                 }
             </div>

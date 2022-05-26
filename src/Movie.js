@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Movie = ({ movie }) => {
+const Movie = ({ movie, onWatchListClick }) => {
     return (
         <div className="movie-card" id='mov-card' class="card col-md-6 col-lg-3">
             <div className="overlay"></div>
@@ -9,7 +9,7 @@ const Movie = ({ movie }) => {
             <div class="card-body">
                 <h5 class="card-title">{movie.title}</h5>
                 <p class="card-text">{movie.overview}</p>
-                <button type='button' class="btn btn-primary" >Add to Watchlist</button>
+                <button type='button' class="btn btn-primary" onClick={() => onWatchListClick(movie)}>Add to Watchlist</button>
             </div>
         </div>
     )
