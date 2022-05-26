@@ -9,21 +9,30 @@ export default function MovieWatch() {
     const [query, setQuery] = useState('');
     const [watchlist, setWatchList] = useState([])
 
-
     useEffect(() => {
-        var movieWatchList = JSON.parse(localStorage.getItem('react-watchlist')
-        );
+        const movieWatchList = JSON.parse(localStorage.getItem('Watchlist'));
+        if (movieWatchList == undefined) {
+            setWatchList([]);
+        } else {
+            setWatchList(movieWatchList);
+        }
+    }, []);
 
-        if (movieWatchList) {
-            setWatchList(movieWatchList);}  },[]);
+    const saveToLocalStorage = (movies) => {
 
-    var LocalStorage = (watchlistMovies) => {localStorage.setItem('react-watchlist', JSON.stringify(watchlistMovies)) ;
+        const movWatch = JSON.parse(localStorage.getItem('watch-list'))
+        //Försöker fixa så om id finns lägg inte till i localstorage
+        if (movWatch.id == movies.id) {
+            movWatch.id.count++;
+        } else {
+            localStorage.setItem('Watchlist', JSON.stringify(movies));
+        }
     };
 
-    var addWatchList = (movie) => {
-        var newWatchList =   [...watchlist, movie];
+    const addWatchList = (movie) => {
+        const newWatchList = [...watchlist, movie];
         setWatchList(newWatchList);
-        LocalStorage(newWatchList);;
+        saveToLocalStorage(newWatchList);;
     };
 
     const searchMovie = (e) => {
@@ -45,8 +54,7 @@ export default function MovieWatch() {
             .then(function () {
                 // always executed
             });
-    }
-
+    };
 
 
     return (
@@ -76,6 +84,8 @@ export default function MovieWatch() {
                 ))
                 }
             </div>
+
+
 
         </div>
 
