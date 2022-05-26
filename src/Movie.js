@@ -8,7 +8,8 @@ const Movie = ({ movie }) => {
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} class="card-img-top" alt='Movie Poster'></img>
             <div class="card-body">
                 <h5 class="card-title">{movie.title}</h5>
-                <a href='#' class="btn btn-primary">Go to movie</a>
+                <p class="card-text">{movie.overview}</p>
+                <button type='button' class="btn btn-primary" >Add to Watchlist</button>
             </div>
         </div>
     )

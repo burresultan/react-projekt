@@ -53,14 +53,10 @@ export default function MovieWatch() {
             </div>
 
             <div className='movies' id='movie-figures' class="row g-2">
-                <ul>
-                    <li>
-                        {movies.map((movie) => (
-                            <Movie movie={movie} />
-                        ))
-                        }
-                    </li>
-                </ul>
+                {movies.map((movie) => (
+                    <Movie movie={movie} />
+                ))
+                }
             </div>
 
         </div>

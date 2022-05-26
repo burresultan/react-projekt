@@ -26,16 +26,15 @@ h1 {
   text-align: center;
 }
 
+#movie-figures {
+  display: flex;
+  flex: wrap;
+}
+
 #mov-card {
   padding-bottom: 1px;
 }
 
-.movie-card {
-  width: 33%;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 10px;
-}
 
 .card {
   padding: 2px;
