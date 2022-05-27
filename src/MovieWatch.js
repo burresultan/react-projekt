@@ -79,7 +79,7 @@ export default function MovieWatch() {
 
 
             <MovieList movies={movies} onWatchListClick={addWatchList} />
-
+            <br></br>
             <WatchList movies={watchlist}></WatchList>
 
         </div>
