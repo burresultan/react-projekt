@@ -8,8 +8,12 @@ import axios from "axios";
 export default function MovieWatch() {
 
     const [movies, setMovies] = useState([]);
-    const [query, setQuery] = useState();
+    const [query, setQuery] = useState('');
     const [watchlist, setWatchList] = useState([]);
+
+    useEffect(() => {
+        searchMovie(query);
+    }, [query]);
 
     useEffect(() => {
         const movieWatchList = JSON.parse(localStorage.getItem('Watchlist'));
@@ -18,26 +22,27 @@ export default function MovieWatch() {
         } else {
             setWatchList(movieWatchList);
         }
-    },);
+    }, []);
 
-    var SaveInLocalStorage = (movies) => {
-        
-        localStorage.setItem('Watchlist', JSON.stringify(movies));
-    };
 
     var addWatchList = (movie) => {
-        var newWatchList =  [...watchlist, movie]; 
-        SaveInLocalStorage(newWatchList);;
+        var newWatchList = [...watchlist, movie];
+        setWatchList(newWatchList);
+        SaveInLocalStorage(newWatchList);
     };
 
     var deleteWatchList = (movie) => {
         var newWatchList = watchlist.filter((watchedmovie) => watchedmovie.id != movie.id)
+        setWatchList(newWatchList)
         SaveInLocalStorage(newWatchList)
-    }
+    };
+    var SaveInLocalStorage = (movies) => {
+        localStorage.setItem('Watchlist', JSON.stringify(movies));
+    };
 
-    const searchMovie = (e) => {
+
+    const searchMovie = async (e) => {
         e.preventDefault();
-
         setQuery(e.target.value);
         // Make a request for a user with a given ID
 
