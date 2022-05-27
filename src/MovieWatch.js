@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import key from '../src/key.json';
-import Movie from '../src/Movie';
+import MovieList from './MovieList';
+import WatchList from './WatchList';
 import axios from "axios";
 
 export default function MovieWatch() {
@@ -19,9 +20,8 @@ export default function MovieWatch() {
     }, []);
 
     const saveToLocalStorage = (movies) => {
-
-        const movWatch = JSON.parse(localStorage.getItem('watch-list'))
         //Försöker fixa så om id finns lägg inte till i localstorage
+        const movWatch = JSON.parse(localStorage.getItem('watch-list'))
         if (movWatch.id == movies.id) {
             movWatch.id.count++;
         } else {
@@ -56,7 +56,6 @@ export default function MovieWatch() {
             });
     };
 
-
     return (
         <div>
             <ul class="nav justify-content-center">
@@ -78,14 +77,10 @@ export default function MovieWatch() {
             </div>
 
 
-            <div className='movies' id='movie-figures' class="row g-2">
-                {movies.map((movie) => (
-                    <Movie movie={movie} onWatchListClick={addWatchList} />
-                ))
-                }
-            </div>
 
+            <MovieList movies={movies} onWatchListClick={addWatchList} />
 
+            <WatchList movies={watchlist}></WatchList>
 
         </div>
 
