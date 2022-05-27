@@ -4,7 +4,11 @@ body {
   margin: 0;
   color: white;
   background: rgb(35, 35, 35);
+  background-image: url(/src/marvelbackgrd.jpg);
+  
+  
 }
+
 
 h1,
 h4 {
@@ -48,4 +52,8 @@ p {
 
 .card {
   padding: 2px;
+}
+
+.container {
+  max-width: 50%;
 }

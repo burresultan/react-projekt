@@ -3,12 +3,12 @@ import key from '../src/key.json';
 import MovieList from './MovieList';
 import MovieListHeader from './MovieListHeader';
 import axios from "axios";
-import './img/marvel.jpeg'
+
 
 export default function MovieWatch() {
 
     const [movies, setMovies] = useState([]);
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState();
     const [watchlist, setWatchList] = useState([]);
 
     useEffect(() => {
@@ -18,23 +18,21 @@ export default function MovieWatch() {
         } else {
             setWatchList(movieWatchList);
         }
-    }, []);
+    },);
 
-    const saveToLocalStorage = (movies) => {
-        //Försöker fixa så om id finns lägg inte till i localstorage
+    var SaveInLocalStorage = (movies) => {
+        
         localStorage.setItem('Watchlist', JSON.stringify(movies));
     };
 
-    const addWatchList = (movie) => {
-        const newWatchList = [...watchlist, movie];
-        setWatchList(newWatchList);
-        saveToLocalStorage(newWatchList);;
+    var addWatchList = (movie) => {
+        var newWatchList =  [...watchlist, movie]; 
+        SaveInLocalStorage(newWatchList);;
     };
 
-    const deleteWatchList = (movie) => {
-        const newWatchList = watchlist.filter((watchedmovie) => watchedmovie.id !== movie.id);
-        setWatchList(newWatchList)
-        saveToLocalStorage(newWatchList)
+    var deleteWatchList = (movie) => {
+        var newWatchList = watchlist.filter((watchedmovie) => watchedmovie.id != movie.id)
+        SaveInLocalStorage(newWatchList)
     }
 
     const searchMovie = (e) => {
