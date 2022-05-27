@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import key from '../src/key.json';
 import MovieList from './MovieList';
-import WatchList from './WatchList';
+import MovieListHeader from './MovieListHeader';
 import axios from "axios";
+import './img/marvel.jpeg'
 
 export default function MovieWatch() {
 
     const [movies, setMovies] = useState([]);
     const [query, setQuery] = useState('');
-    const [watchlist, setWatchList] = useState([])
+    const [watchlist, setWatchList] = useState([]);
 
     useEffect(() => {
         const movieWatchList = JSON.parse(localStorage.getItem('Watchlist'));
@@ -21,12 +22,7 @@ export default function MovieWatch() {
 
     const saveToLocalStorage = (movies) => {
         //Försöker fixa så om id finns lägg inte till i localstorage
-        const movWatch = JSON.parse(localStorage.getItem('watch-list'))
-        if (movWatch.id == movies.id) {
-            movWatch.id.count++;
-        } else {
-            localStorage.setItem('Watchlist', JSON.stringify(movies));
-        }
+        localStorage.setItem('Watchlist', JSON.stringify(movies));
     };
 
     const addWatchList = (movie) => {
@@ -34,6 +30,12 @@ export default function MovieWatch() {
         setWatchList(newWatchList);
         saveToLocalStorage(newWatchList);;
     };
+
+    const deleteWatchList = (movie) => {
+        const newWatchList = watchlist.filter((watchedmovie) => watchedmovie.id !== movie.id);
+        setWatchList(newWatchList)
+        saveToLocalStorage(newWatchList)
+    }
 
     const searchMovie = (e) => {
         e.preventDefault();
@@ -76,11 +78,12 @@ export default function MovieWatch() {
                 </div>
             </div>
 
-
-
-            <MovieList movies={movies} onWatchListClick={addWatchList} />
+            <MovieListHeader header='Search results'></MovieListHeader>
+            <MovieList movies={movies} onWatchListClick={addWatchList} btnText="Add to Watchlist" />
             <br></br>
-            <WatchList movies={watchlist}></WatchList>
+            <MovieListHeader header='Watchlist'></MovieListHeader>
+
+            <MovieList movies={watchlist} onWatchListClick={deleteWatchList} btnText="Delete from Watchlist"></MovieList>
 
         </div>
 

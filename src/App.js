@@ -5,7 +5,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>MovieWatch</h1>
+      <h1 className='h1 mt-3'>MovieWatch</h1>
       <MovieWatch />
     </div>
   );
