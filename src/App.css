@@ -5,8 +5,7 @@ body {
   color: white;
   background: rgb(35, 35, 35);
   background-image: url(/src/marvelbackgrd.jpg);
-
-
+  background-size: 100%;
 }
 
 
