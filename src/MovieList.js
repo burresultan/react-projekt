@@ -1,6 +1,7 @@
 import React from 'react';
 
 const MovieList = ({ movies, onWatchListClick, btnText }) => {
+
     return (
         <div className='movies' id='movie-figures' class="row g-2">
             {movies?.map((movie, index) => (
@@ -12,7 +13,7 @@ const MovieList = ({ movies, onWatchListClick, btnText }) => {
                     <div class="card-body">
                         <h5 class="card-title">{movie.title}</h5>
                         <p class="card-text">{movie.overview}</p>
-                        <button type='button' class="btn btn-primary" key={index} movie={movie} onClick={() => onWatchListClick(movie)}>{btnText}</button>
+                        <button type='button' id='btn' class="btn btn-primary" key={index} movie={movie} onClick={() => onWatchListClick(movie)}> {btnText}</button>
                     </div>
                 </div>))}
         </div>

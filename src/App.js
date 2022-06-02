@@ -6,7 +6,7 @@ import MovieListHeader from './MovieListHeader';
 import axios from "axios";
 import Nav from './Nav';
 import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
-import Watchlist from './Watchlist';
+import Search from './Search';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -14,14 +14,13 @@ function App() {
   const [watchlist, setWatchList] = useState([]);
 
   useEffect(() => {
+    // eslint-disable-next-line
     searchMovie(query);
   }, [query]);
 
   useEffect(() => {
     const movieWatchList = JSON.parse(localStorage.getItem('Watchlist'));
-    if (movieWatchList == undefined) {
-      setWatchList([]);
-    } else {
+    if (movieWatchList !== undefined) {
       setWatchList(movieWatchList);
     }
   }, []);
@@ -34,12 +33,10 @@ function App() {
   };
 
   var deleteWatchList = (movie) => {
-    var newWatchList = watchlist.filter((watchedmovie) => watchedmovie.id != movie.id)
+    var newWatchList = watchlist.filter((watchedmovie) => watchedmovie.id !== movie.id)
     setWatchList(newWatchList)
     localStorage.setItem('Watchlist', JSON.stringify(newWatchList));
   };
-
-
 
   const searchMovie = async (e) => {
     e.preventDefault();
@@ -66,43 +63,26 @@ function App() {
     <Router>
       <div className="App">
         <h1 className='h1 mt-3'>MovieWatch</h1>
-
-
-        <Routes>
-          <Route path='/' />
-          <Route path='Watchlist' element={<>
-            <Watchlist>
-              <MovieList movies={watchlist} onWatchListClick={deleteWatchList} btnText="Delete from Watchlist"></MovieList>
-            </Watchlist>
-          </>
-          } />
-
-
-        </Routes>
-
-
-
         <Nav />
 
+        <Routes>
+          <Route path='/' element={
+            <>
+              <Search query={query} searchMovie={searchMovie}></Search>
+              <MovieListHeader header='Search results'></MovieListHeader>
+              <MovieList movies={movies} onWatchListClick={addWatchList} btnText="Add to Watchlist" />
+            </>
+          } />
 
-        <div>
-          <div class="row mb-3" id='search-div'>
-            <div class="col-sm-12">
-              <label for="search" class="col-sm-6 col-form-label">Search for a movie</label>
-              <input type="text" class="form-control" id="search" placeholder='Search for a title...' onChange={searchMovie} value={query}></input>
-            </div>
-          </div>
-
-
-          <MovieListHeader header='Search results'></MovieListHeader>
-          <MovieList movies={movies} onWatchListClick={addWatchList} btnText="Add to Watchlist" />
-
-
-          <MovieList movies={watchlist} onWatchListClick={deleteWatchList} btnText="Delete from Watchlist"></MovieList>
-
-        </div>
+          <Route path='Watchlist' element={
+            <>
+              <MovieListHeader header='Watchlist'></MovieListHeader>
+              <MovieList movies={watchlist} onWatchListClick={deleteWatchList} btnText="Delete from Watchlist"></MovieList>
+            </>
+          } />
+        </Routes>
       </div>
-    </Router>
+    </Router >
 
   );
 }
