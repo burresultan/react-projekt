@@ -3,6 +3,9 @@ import key from '../src/key.json';
 import MovieList from './MovieList';
 import MovieListHeader from './MovieListHeader';
 import axios from "axios";
+import Nav from './Nav';
+import { BrowserRouter as Router, Routes, Route,} from "react-router-dom";
+import Watchlist from './Watchlist';
 
 
 export default function MovieWatch() {
@@ -60,18 +63,21 @@ export default function MovieWatch() {
     };
 
     return (
-        <div>
-        <ul class="nav justify-content-center">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Homepage</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Watchlist</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Movie History</a>
-        </li>
-        </ul>
+        <Router>
+        <div className="App">
+        <h1 className='h1 mt-3'>MovieWatch</h1>
+        
+      
+      <Routes>
+        <Route path='/' element={<MovieWatch/>} />
+        <Route path='Watchlist' element={<Watchlist/>} />
+  
+  
+      </Routes>
+
+        
+        
+       <Nav/>
         
     
         <div>
@@ -92,6 +98,7 @@ export default function MovieWatch() {
 
         </div>
         </div>
+        </Router>
 
     )
 }
