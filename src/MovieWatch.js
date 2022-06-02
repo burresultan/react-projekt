@@ -28,17 +28,15 @@ export default function MovieWatch() {
     var addWatchList = (movie) => {
         var newWatchList = [...watchlist, movie];
         setWatchList(newWatchList);
-        SaveInLocalStorage(newWatchList);
+        localStorage.setItem('Watchlist', JSON.stringify(newWatchList));  
     };
 
     var deleteWatchList = (movie) => {
         var newWatchList = watchlist.filter((watchedmovie) => watchedmovie.id != movie.id)
         setWatchList(newWatchList)
-        SaveInLocalStorage(newWatchList)
+        localStorage.setItem('Watchlist', JSON.stringify(newWatchList));
     };
-    var SaveInLocalStorage = (movies) => {
-        localStorage.setItem('Watchlist', JSON.stringify(movies));
-    };
+    
 
 
     const searchMovie = async (e) => {
@@ -63,12 +61,27 @@ export default function MovieWatch() {
 
     return (
         <div>
+        <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Homepage</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Watchlist</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Movie History</a>
+        </li>
+        </ul>
+        
+    
+        <div>
             <div class="row mb-3" id='search-div'>
                 <div class="col-sm-12">
                     <label for="search" class="col-sm-6 col-form-label">Search for a movie</label>
                     <input type="text" class="form-control" id="search" placeholder='Search for a title...' onChange={searchMovie} value={query}></input>
+                </div>  
                 </div>
-            </div>
+           
 
             <MovieListHeader header='Search results'></MovieListHeader>
             <MovieList movies={movies} onWatchListClick={addWatchList} btnText="Add to Watchlist" />
@@ -77,6 +90,7 @@ export default function MovieWatch() {
 
             <MovieList movies={watchlist} onWatchListClick={deleteWatchList} btnText="Delete from Watchlist"></MovieList>
 
+        </div>
         </div>
 
     )
