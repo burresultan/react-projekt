@@ -8,7 +8,6 @@ import Nav from './Nav';
 import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
 import Search from './Search';
 
-
 function App() {
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
@@ -48,7 +47,6 @@ function App() {
     }
   }, []);
 
-
   var addWatchList = (movie) => {
     var newWatchList = [...watchlist, movie];
     setWatchList(newWatchList);
@@ -81,13 +79,11 @@ function App() {
       });
   };
 
-
   return (
     <Router>
       <div className="App">
         <h1 className='h1 mt-3'>MovieWatch</h1>
         <Nav />
-
         <Routes>
           <Route path='/' element={
             <>
@@ -96,7 +92,6 @@ function App() {
               <MovieList movies={movies} onWatchListClick={addWatchList} btnText="Add to Watchlist" />
             </>
           } />
-
           <Route path='Watchlist' element={
             <>
               <MovieListHeader header='Watchlisted Movies'></MovieListHeader>
@@ -108,14 +103,11 @@ function App() {
               <MovieListHeader header='Trending Movies'></MovieListHeader>
               <MovieList movies={trending} onWatchListClick={addWatchList} btnText="Add to Watchlist" ></MovieList>
             </>
-
           } />
-
         </Routes>
       </div>
     </Router >
 
   );
 }
-
 export default App;
