@@ -1,4 +1,5 @@
 # MovieWatch
+MovieWAtch is a web application that provides users with movies that they can save to a "Watchlist".
 
 
 # Installing
