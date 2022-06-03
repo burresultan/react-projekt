@@ -1,9 +1,11 @@
 # MovieWatch
-MovieWatch is a Movie-library that provides users with information about movies. As a user you are able to:
-- Search for Movies in the libray
-- Add movies to your own watchlist
+MovieWatch is a Movie library that provides users with information about movies. As a user you are able to:
+- Search for Movies from the API
+- Add movies to your watchlist
 - Delete movies from your watchlist
 - See trending movies 
+
+The Movies are extracted from [TMDb's API](https://www.themoviedb.org/documentation/api).
 
 
 # Installing
@@ -23,14 +25,12 @@ and enter the following in the json file:
 
 
 
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-
-## Available Scripts
+## How to Run
 
 In the project directory, you can run:
 
@@ -39,7 +39,35 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+
+# React vs Angular & Vue
+
+## Why we chose React over Angular & Vue
+### React
+- React is the most popular frontend framework
+- React is easier to learn and use
+- React offers fast rendering
+- Has a strong community support (eg. Youtube & StackOverflow)
+- React lets us re-use elements in different components
+- React has a third-party CLI tool called ``create-react-app`` which creates the react project quckly.
+
+### Angular
+- Angular is harder to learn and use
+- Angular has less npm downloads than React
+- Angular has a smaller community, which makes it harder to find solutions to problems
+- Angular has more questions tagged than React in Stackoverflow, despite being less used
+- Angular has a longer ramp-up time, because it's more complex than React
 
 
+### Vue
+- Vue has a smaller community support
+- Makes it harder to find solutions to problems online
+- Vue has a lot less npm package downloads than React
+- Vue is less popular for mobile/cross-platform solutions
+- Vue view layers are built different, uses HTML templates but option to write in JSX.
+- React on the other hand solely uses JSX
+
+
+## Project Members
+- Brwa Sultan
+- Simon Eskilsson
