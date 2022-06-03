@@ -1,5 +1,9 @@
 # MovieWatch
-MovieWAtch is a web application that provides users with movies that they can save to a "Watchlist".
+MovieWatch is a Movie-library that provides users with information about movies. As a user you are able to:
+- Search for Movies in the libray
+- Add movies to your own watchlist
+- Delete movies from your watchlist
+- See trending movies 
 
 
 # Installing
