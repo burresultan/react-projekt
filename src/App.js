@@ -48,15 +48,20 @@ function App() {
   }, []);
 
   var addWatchList = (movie) => {
+    console.log("TESTAR ATT DET FUNKAR")
     var newWatchList = [...watchlist, movie];
     setWatchList(newWatchList);
-    localStorage.setItem('Watchlist', JSON.stringify(newWatchList));
+    SaveInLocalStorage(newWatchList);
   };
 
   var deleteWatchList = (movie) => {
-    var newWatchList = watchlist.filter((watchedmovie) => watchedmovie.id !== movie.id)
+    var newWatchList = watchlist.filter((watchedmovie) => watchedmovie.id != movie.id)
     setWatchList(newWatchList)
-    localStorage.setItem('Watchlist', JSON.stringify(newWatchList));
+    SaveInLocalStorage(newWatchList)
+  };
+
+  var SaveInLocalStorage = (movies) => {
+    localStorage.setItem('Watchlist', JSON.stringify(movies));
   };
 
   const searchMovie = async (e) => {
