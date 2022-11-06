@@ -41,20 +41,20 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const movieWatchList = JSON.parse(localStorage.getItem('Watchlist'));
-    if (movieWatchList !== undefined) {
-      setWatchList(movieWatchList);
+    const movieWatchList = localStorage.getItem('Watchlist');
+    if (movieWatchList) {
+      setWatchList(JSON.parse(movieWatchList));
     }
   }, []);
 
-  var addWatchList = (movie) => {
-    var newWatchList = [...watchlist, movie];
+  const addWatchList = (movie) => {
+    const newWatchList = [...watchlist, movie];
     setWatchList(newWatchList);
     localStorage.setItem('Watchlist', JSON.stringify(newWatchList));
   };
 
-  var deleteWatchList = (movie) => {
-    var newWatchList = watchlist.filter((watchedmovie) => watchedmovie.id !== movie.id)
+  const deleteWatchList = (movie) => {
+    const newWatchList = watchlist.filter((watchedmovie) => watchedmovie.id !== movie.id)
     setWatchList(newWatchList)
     localStorage.setItem('Watchlist', JSON.stringify(newWatchList));
   };
